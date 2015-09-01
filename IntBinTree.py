@@ -1,3 +1,6 @@
+class TreeTypeException(Exception):
+	pass
+
 class IntBinTree(object):
 	parent = None
 	lchild = None
@@ -8,8 +11,10 @@ class IntBinTree(object):
 		self.key = k
 
 	def add(self, val, parent_val):
+		if not type(val) is int:
+			raise TreeTypeException("Tree nodes must be integers")
 		if not self.add_helper(val, parent_val):
-			print("Parent not found")
+			print("Parent %d not found" % parent_val)
 
 	def add_helper(self, val, parent_val):
 		if self.key == parent_val:
@@ -37,12 +42,12 @@ class IntBinTree(object):
 
 	def delete(self, val):
 		if not self.delete_helper(val):
-			print("Node not found")
+			print("Node %d not found" % val)
 
 	def delete_helper(self, val):
 		if self.key == val:
 			if self.lchild != None or self.rchild != None:
-				print("Node not deleted. Has children")
+				print("Node %d not deleted. Has children" % val)
 				return True
 			else:
 				if self.parent.lchild == self:
