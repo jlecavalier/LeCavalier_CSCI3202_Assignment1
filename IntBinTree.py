@@ -52,7 +52,7 @@ class IntBinTree(object):
 			else:
 				if self.parent.lchild == self:
 					self.parent.lchild = None
-				else:
+				elif self.parent.rchild == self:
 					self.parent.rchild = None
 				del self
 				return True
